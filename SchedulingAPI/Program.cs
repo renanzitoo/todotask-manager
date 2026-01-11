@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchedulingAPI.Context;
+using SchedulingAPI.Services;
+using SchedulingAPI.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +16,12 @@ builder.Services.AddDbContext<TodoTaskContext>(options =>
     ));
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ITodoTaskService, TodoTaskService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -34,3 +39,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
